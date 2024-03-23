@@ -57,15 +57,19 @@
               };
             };
             packages = {
-              randomconv = buildDunePackage {
-                version = "0.2.0";
-                pname = "randomconv";
-                src = builtins.fetchGit {
-                  url = "git@github.com:hannesm/randomconv.git";
-                  rev = "b2ce656d09738d676351f5a1c18aff0ff37a7dcc";
-                  ref = "refs/tags/${version}";
+              randomconv =
+                let
+                  rc-version = "0.2.0";
+                in
+                buildDunePackage {
+                  version = rc-version;
+                  pname = "randomconv";
+                  src = builtins.fetchGit {
+                    url = "git@github.com:hannesm/randomconv.git";
+                    rev = "b2ce656d09738d676351f5a1c18aff0ff37a7dcc";
+                    ref = "refs/tags/${rc-version}";
+                  };
                 };
-              };
 
               default = buildDunePackage {
                 inherit version;
